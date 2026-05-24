@@ -1,0 +1,43 @@
+<div class="card">
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem">
+    <h2>Empréstimos</h2>
+    <a routerLink="/emprestimos/novo" class="btn btn-primary">+ Novo Empréstimo</a>
+  </div>
+
+  <div *ngIf="mensagem" style="color:red; margin-bottom:1rem">{{ mensagem }}</div>
+
+  <table>
+    <thead>
+    <tr>
+      <th>Livro</th>
+      <th>Pessoa</th>
+      <th>Telefone</th>
+      <th>Data Empréstimo</th>
+      <th>Devolução Prevista</th>
+      <th>Devolução Efetiva</th>
+      <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let emp of emprestimos">
+      <td>{{ emp.livro?.titulo }}</td>
+      <td>{{ emp.nomePessoa }}</td>
+      <td>{{ emp.telefone }}</td>
+      <td>{{ emp.dataEmprestimo }}</td>
+      <td>{{ emp.dataDevolucaoPrevista }}</td>
+      <td>
+        <span *ngIf="emp.dataDevolucaoEfetiva">{{ emp.dataDevolucaoEfetiva }}</span>
+        <span *ngIf="!emp.dataDevolucaoEfetiva" class="badge badge-warning">Pendente</span>
+      </td>
+      <td>
+        <button class="btn btn-success" (click)="devolver(emp.id)"
+                *ngIf="!emp.dataDevolucaoEfetiva">Devolver</button>
+        <span *ngIf="emp.dataDevolucaoEfetiva" class="badge badge-success">Devolvido</span>
+      </td>
+    </tr>
+    <tr *ngIf="emprestimos.length === 0">
+      <td colspan="7" style="text-align:center; color:#999">Nenhum empréstimo registrado</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

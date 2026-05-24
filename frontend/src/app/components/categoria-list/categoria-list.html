@@ -1,0 +1,34 @@
+<div class="card">
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem">
+    <h2>Categorias</h2>
+    <a routerLink="/categorias/nova" class="btn btn-primary">+ Nova Categoria</a>
+  </div>
+
+  <div *ngIf="mensagem" style="color:red; margin-bottom:1rem">{{ mensagem }}</div>
+
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nome</th>
+      <th>Descrição</th>
+      <th>Livros</th>
+      <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let cat of categorias">
+      <td>{{ cat.id }}</td>
+      <td>{{ cat.nome }}</td>
+      <td>{{ cat.descricao }}</td>
+      <td>{{ cat.livros?.length || 0 }}</td>
+      <td>
+        <button class="btn btn-danger" (click)="deletar(cat.id)">Excluir</button>
+      </td>
+    </tr>
+    <tr *ngIf="categorias.length === 0">
+      <td colspan="5" style="text-align:center; color:#999">Nenhuma categoria cadastrada</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

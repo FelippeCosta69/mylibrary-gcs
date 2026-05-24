@@ -1,0 +1,18 @@
+<div class="card" style="max-width:500px">
+  <h2 style="margin-bottom:1rem">Nova Categoria</h2>
+
+  <div *ngIf="mensagem" style="color:red; margin-bottom:1rem">{{ mensagem }}</div>
+
+  <div>
+    <label>Nome *</label>
+    <input [(ngModel)]="categoria.nome" placeholder="Ex: Ficção Científica">
+
+    <label>Descrição</label>
+    <input [(ngModel)]="categoria.descricao" placeholder="Ex: Livros de ficção científica">
+
+    <div style="display:flex; gap:1rem; margin-top:1rem">
+      <button class="btn btn-primary" (click)="salvar()">Salvar</button>
+      <a routerLink="/categorias" class="btn btn-warning">Cancelar</a>
+    </div>
+  </div>
+</div>
