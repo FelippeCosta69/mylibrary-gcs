@@ -1,0 +1,16 @@
+<div class="card" style="max-width:500px">
+  <h2 style="margin-bottom:1rem">Novo Empréstimo</h2>
+  <div *ngIf="mensagem" style="color:red;margin-bottom:1rem">{{mensagem}}</div>
+  <label>Livro *</label>
+  <select [(ngModel)]="emprestimo.livro.id">
+    <option [ngValue]="null">Selecione um livro</option>
+    <option *ngFor="let livro of livrosDisponiveis" [ngValue]="livro.id">{{livro.titulo}} - {{livro.autor}}</option>
+  </select>
+  <label>Nome da Pessoa *</label><input [(ngModel)]="emprestimo.nomePessoa" placeholder="Ex: João Silva">
+  <label>Telefone</label><input [(ngModel)]="emprestimo.telefone" placeholder="Ex: (11) 99999-9999">
+  <label>Data de Devolução Prevista</label><input [(ngModel)]="emprestimo.dataDevolucaoPrevista" type="date">
+  <div style="display:flex;gap:1rem;margin-top:1rem">
+    <button class="btn btn-primary" (click)="salvar()">Emprestar</button>
+    <a routerLink="/emprestimos" class="btn btn-warning">Cancelar</a>
+  </div>
+</div>

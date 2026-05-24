@@ -1,0 +1,15 @@
+<h2 style="margin-bottom:1.5rem">Dashboard</h2>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2rem">
+  <div class="card" style="text-align:center"><div style="font-size:2rem;font-weight:bold;color:#3498db">{{totalLivros}}</div><div>Total de Livros</div></div>
+  <div class="card" style="text-align:center"><div style="font-size:2rem;font-weight:bold;color:#2ecc71">{{totalDisponiveis}}</div><div>Disponíveis</div></div>
+  <div class="card" style="text-align:center"><div style="font-size:2rem;font-weight:bold;color:#f39c12">{{totalEmprestados}}</div><div>Emprestados</div></div>
+  <div class="card" style="text-align:center"><div style="font-size:2rem;font-weight:bold;color:#e74c3c">{{totalEmprestimosAtivos}}</div><div>Empréstimos Ativos</div></div>
+</div>
+<div class="card">
+  <h3 style="margin-bottom:1rem">Últimos Empréstimos Ativos</h3>
+  <table><thead><tr><th>Livro</th><th>Pessoa</th><th>Data</th><th>Devolução Prevista</th></tr></thead>
+  <tbody>
+    <tr *ngFor="let emp of ultimosEmprestimos"><td>{{emp.livro?.titulo}}</td><td>{{emp.nomePessoa}}</td><td>{{emp.dataEmprestimo}}</td><td>{{emp.dataDevolucaoPrevista || "Não definida"}}</td></tr>
+    <tr *ngIf="ultimosEmprestimos.length === 0"><td colspan="4" style="text-align:center;color:#999">Nenhum empréstimo ativo</td></tr>
+  </tbody></table>
+</div>

@@ -1,0 +1,17 @@
+<div class="card" style="max-width:500px">
+  <h2 style="margin-bottom:1rem">Novo Livro</h2>
+  <div *ngIf="mensagem" style="color:red;margin-bottom:1rem">{{mensagem}}</div>
+  <label>Título *</label><input [(ngModel)]="livro.titulo" placeholder="Ex: O Senhor dos Anéis">
+  <label>Autor *</label><input [(ngModel)]="livro.autor" placeholder="Ex: J.R.R. Tolkien">
+  <label>ISBN</label><input [(ngModel)]="livro.isbn" placeholder="Ex: 978-3-16-148410-0">
+  <label>Ano</label><input [(ngModel)]="livro.ano" type="number" placeholder="Ex: 1954">
+  <label>Categoria *</label>
+  <select [(ngModel)]="livro.categoria.id">
+    <option [ngValue]="null">Selecione uma categoria</option>
+    <option *ngFor="let cat of categorias" [ngValue]="cat.id">{{cat.nome}}</option>
+  </select>
+  <div style="display:flex;gap:1rem;margin-top:1rem">
+    <button class="btn btn-primary" (click)="salvar()">Salvar</button>
+    <a routerLink="/livros" class="btn btn-warning">Cancelar</a>
+  </div>
+</div>
